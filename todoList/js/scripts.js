@@ -1,39 +1,100 @@
 // Clase
 
 class ToDo {
-
+  Texto 
+  Prioridade 
+  Feito 
+  constructor(texto, prioridade){
+    this.Texto = texto; 
+    this.Prioridade = prioridade;
+    this.Feito = false
+  }
 }
+
 
 // Array
-
-
+let arrayTodos = []
 //funções projeto
 
-function CriarToDo() {
-
+function CriarToDo(texto, prioridade, array) {
+  let toDo = new ToDo(texto, prioridade);
+  if (!array.some(objeto => objeto.Texto === texto)) {
+      array.push(toDo);
+  }
+  return toDo; // Retorna toDo independentemente do resultado da verificação
 }
 
-function AtualizarToDo() {
 
+function AtualizarToDo(textoAntigo, textoNovo, array) {
+  let validation = false;
+  array.forEach(objeto=> {
+    if(objeto.Texto === textoAntigo){
+      textoAntigo = textoNovo;
+      validation = true;
+    }
+  })
+  return validation;
 }
 
-function ConcluirToDo() {
-
+function ConcluirToDo(array, texto) {
+  let validation = false;
+  array.forEach(objeto => {
+    if(objeto.Texto === texto){
+      objeto.Feito = true;
+      validation = true;
+    }
+  })
+ return validation;
 }
 
-function ExcluirToDo() {
-
+function ExcluirToDo(array, texto) {
+  let validation = false;
+  array.forEach((objeto, i) => {
+    if(objeto.Texto === texto){
+      array.splice(i, 1)
+      validation = true;
+    }
+  })
+ return validation;
 }
 
-function PesquisarToDo() {
- 
+function PesquisarToDo(array, texto) {
+  let validation = false;
+  array.forEach(objeto => {
+    if(objeto.Texto === texto){
+      validation = true;
+    }
+  })
+  return validation;
 }
 
-function OrdenarCrescente() {
-  
+function OrdenarCrescente(array) {
+  array.sort((a, b) => {
+    const valueA = a.Prioridade
+    const valueB = b.Prioridade
+    if (valueA < valueB) {
+      return 1;
+    }
+    if (valueA > valueB) {
+      return -1;
+    }
+      return 0;
+  });
+  return array;
 }
-function OrdenarDecrescente() {
-  
+function OrdenarDecrescente(array) {
+  array.sort((a, b) => {
+    const valueA = a.Prioridade
+    const valueB = b.Prioridade
+    if (valueA < valueB) {
+      return -1;
+    }
+    if (valueA > valueB) {
+      return 1;
+    }
+    return 0;
+  });
+  return array;
 }
 
 // Seleção de elementos
